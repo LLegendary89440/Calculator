@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="calculator">
+            <div class="display-area">
+                <input type="text" id="display" readonly value="0">
+            </div>
+            <div class="buttons">
+                <button onclick="clearAll()" class="btn-util span-two">AC</button>
+                <button onclick="deleteLast()" class="btn-util">DEL</button>
+                <button onclick="appendOperator('/')" class="btn-operator">&divide;</button>
+
+                <button onclick="appendNumber('7')" class="btn-num">7</button>
+                <button onclick="appendNumber('8')" class="btn-num">8</button>
+                <button onclick="appendNumber('9')" class="btn-num">9</button>
+                <button onclick="appendOperator('*')" class="btn-operator">&times;</button>
+
+                <button onclick="appendNumber('4')" class="btn-num">4</button>
+                <button onclick="appendNumber('5')" class="btn-num">5</button>
+                <button onclick="appendNumber('6')" class="btn-num">6</button>
+                <button onclick="appendOperator('-')" class="btn-operator">-</button>
+
+                <button onclick="appendNumber('1')" class="btn-num">1</button>
+                <button onclick="appendNumber('2')" class="btn-num">2</button>
+                <button onclick="appendNumber('3')" class="btn-num">3</button>
+                <button onclick="appendOperator('+')" class="btn-operator">+</button>
+
+                <button onclick="toggleSign()" class="btn-util">+/-</button>
+                <button onclick="appendNumber('0')" class="btn-num">0</button>
+                <button onclick="appendNumber('.') " class="btn-num">.</button>
+                <button onclick="calculateResult()" class="btn-equals span-one-half-util">&equals;</button>
+
+                <button onclick="squareRoot()" class="btn-util">√</button>
+                <button onclick="percentage()" class="btn-util">%</button>
+                <button onclick="clearHistory()" class="btn-util span-two">Clear Hist</button>
+            </div>
+        </div>
+        <div class="history-panel">
+            <h3>History</h3>
+            <div id="history-log" class="history-log">
+                <!-- History items will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

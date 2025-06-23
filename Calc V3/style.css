@@ -1,0 +1,251 @@
+:root {
+    --apple-blue: #007aff;
+    --apple-blue-light: #58a9ff;
+    --apple-blue-dark: #005ec4;
+
+    --apple-green: #34c759;
+    --apple-green-light: #64d97f;
+    --apple-green-dark: #27a347;
+
+    --light-gray-bg: #f2f2f7;
+    --medium-gray-bg: #e5e5ea;
+    --dark-gray-text: #1c1c1e;
+    --medium-gray-text: #8e8e93;
+    --border-color: #d1d1d6;
+
+    --panel-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--light-gray-bg);
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--dark-gray-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: row; /* Calculator and history side-by-side */
+    gap: 30px;
+    align-items: flex-start;
+    background-color: var(--panel-bg);
+    padding: 30px;
+    border-radius: 24px; /* More rounded */
+    box-shadow: 0 12px 30px var(--shadow-color), 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.calculator {
+    width: 340px; /* Adjusted width */
+    display: flex;
+    flex-direction: column;
+}
+
+.display-area {
+    margin-bottom: 25px;
+    background-color: var(--medium-gray-bg);
+    border-radius: 12px;
+    padding: 5px; /* Padding around the input */
+}
+
+#display {
+    width: 100%;
+    height: 80px;
+    background-color: transparent; /* Transparent to show display-area bg */
+    border: none;
+    color: var(--dark-gray-text);
+    font-size: 3.2em;
+    font-weight: 300; /* Lighter font weight for display */
+    text-align: right;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#display::placeholder {
+    color: var(--medium-gray-text);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+button {
+    height: 70px;
+    border: none;
+    border-radius: 18px; /* Very rounded buttons */
+    font-size: 1.5em; /* Adjusted font size */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:active {
+    transform: scale(0.96);
+    box-shadow: none; /* Flatten on active */
+}
+
+.btn-num {
+    background-color: var(--medium-gray-bg);
+    color: var(--dark-gray-text);
+    font-size: 1.8em; /* Larger for numbers */
+    font-weight: 400;
+}
+.btn-num:hover {
+    background-color: #d8d8dd; /* Slightly darker light gray */
+}
+
+.btn-operator {
+    color: white;
+    font-size: 1.8em;
+}
+
+.op-divide, .op-multiply, .op-subtract, .op-add {
+    background-image: linear-gradient(to bottom, var(--apple-blue-light), var(--apple-blue));
+}
+.op-divide:hover, .op-multiply:hover, .op-subtract:hover, .op-add:hover {
+    background-image: linear-gradient(to bottom, lighten(var(--apple-blue-light), 5%), lighten(var(--apple-blue), 5%));
+}
+
+
+.btn-equals {
+    background-image: linear-gradient(to bottom, var(--apple-green-light), var(--apple-green));
+    color: white;
+    font-size: 2em;
+}
+.btn-equals:hover {
+    background-image: linear-gradient(to bottom, lighten(var(--apple-green-light), 5%), lighten(var(--apple-green), 5%));
+}
+
+.btn-util {
+    background-color: #d1d1d6; /* Darker gray for utilities */
+    color: var(--dark-gray-text);
+    font-size: 1.4em; /* Slightly smaller for util text */
+}
+.btn-util:hover {
+    background-color: #c7c7cc;
+}
+
+.top-row { /* Specific class for AC, +/-, % */
+   font-weight: 600;
+}
+
+.bottom-row-util { /* For DEL, √ if we want to style them differently */
+    font-size: 1.6em;
+}
+
+
+.span-two {
+    grid-column: span 2;
+}
+
+/* History Panel Styling */
+.history-panel {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px; /* Add some space if needed */
+    border-left: 1px solid var(--border-color); /* Separator line */
+}
+
+.history-panel h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--dark-gray-text);
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.history-log {
+    flex-grow: 1; /* Allows it to take available space */
+    max-height: 350px; /* Or adjust as needed */
+    overflow-y: auto;
+    font-size: 0.95em;
+    color: var(--medium-gray-text);
+    margin-bottom: 15px; /* Space before clear button */
+}
+
+.history-log::-webkit-scrollbar {
+    width: 6px;
+}
+.history-log::-webkit-scrollbar-track {
+    background: var(--light-gray-bg);
+    border-radius: 3px;
+}
+.history-log::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+.history-log::-webkit-scrollbar-thumb:hover {
+    background: var(--medium-gray-text);
+}
+
+.history-item {
+    padding: 8px 2px;
+    border-bottom: 1px solid #f0f0f0; /* Very light separator */
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.btn-clear-history {
+    background-color: var(--medium-gray-bg);
+    color: var(--apple-blue); /* Blue text for action */
+    font-weight: 600;
+    padding: 12px 15px;
+    border-radius: 10px;
+    width: 100%; /* Make it full width of its container */
+    font-size: 0.9em;
+    margin-top: auto; /* Pushes to bottom if history log is short */
+}
+.btn-clear-history:hover {
+    background-color: #dcdce1;
+}
+
+/* For smaller screens, stack them */
+@media (max-width: 768px) {
+    .app-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .history-panel {
+        width: 100%;
+        max-width: 340px; /* Match calculator width */
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        padding-left: 0;
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    .calculator {
+        width: 100%;
+        max-width: 340px;
+    }
+}

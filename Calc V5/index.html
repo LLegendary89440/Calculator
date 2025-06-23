@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaCalc Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="app-wrapper">
+            <div class="calculator">
+                <div class="display-area">
+                    <input type="text" id="display" readonly value="0">
+                </div>
+                <div class="buttons">
+                    <!-- AC and DEL span-two and on top -->
+                    <button onclick="clearAll()" class="btn-util top-row span-two interactive-bg">AC</button>
+                    <button onclick="deleteLast()" class="btn-util top-row span-two interactive-bg">DEL</button>
+                    <!-- Removed +/-, % from top row to make space for wide AC/DEL -->
+
+                    <button onclick="appendNumber('7')" class="btn-num interactive-bg">7</button>
+                    <button onclick="appendNumber('8')" class="btn-num interactive-bg">8</button>
+                    <button onclick="appendNumber('9')" class="btn-num interactive-bg">9</button>
+                    <button onclick="appendOperator('/')" class="btn-operator op-divide interactive-bg">&divide;</button>
+
+                    <button onclick="appendNumber('4')" class="btn-num interactive-bg">4</button>
+                    <button onclick="appendNumber('5')" class="btn-num interactive-bg">5</button>
+                    <button onclick="appendNumber('6')" class="btn-num interactive-bg">6</button>
+                    <button onclick="appendOperator('*')" class="btn-operator op-multiply interactive-bg">&times;</button>
+
+                    <button onclick="appendNumber('1')" class="btn-num interactive-bg">1</button>
+                    <button onclick="appendNumber('2')" class="btn-num interactive-bg">2</button>
+                    <button onclick="appendNumber('3')" class="btn-num interactive-bg">3</button>
+                    <button onclick="appendOperator('-')" class="btn-operator op-subtract interactive-bg">-</button>
+
+                    <!-- Add +/- and % back here or further down -->
+                    <button onclick="toggleSign()" class="btn-util interactive-bg">+/-</button>
+                    <button onclick="appendNumber('0')" class="btn-num interactive-bg">0</button> <!-- Zero no longer span-two -->
+                    <button onclick="percentage()" class="btn-util interactive-bg">%</button>
+                    <button onclick="appendOperator('+')" class="btn-operator op-add interactive-bg">+</button>
+
+
+                    <button onclick="squareRoot()" class="btn-util bottom-row-util interactive-bg">√</button>
+                    <button onclick="appendNumber('.') " class="btn-num interactive-bg">.</button>
+                    <button onclick="calculateResult()" class="btn-equals span-two interactive-bg">&equals;</button> <!-- Equals spans two -->
+
+                </div>
+            </div>
+
+            <div class="history-panel">
+                <h3>Calculation History</h3>
+                <div id="history-log" class="history-log"></div>
+                <button onclick="clearHistory()" class="btn-clear-history interactive-bg">Clear History</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

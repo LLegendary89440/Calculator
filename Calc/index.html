@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly value="0">
+        <div class="buttons">
+            <button onclick="clearDisplay()" class="span-two clear-btn">C</button>
+            <button onclick="deleteLast()" class="operator-btn">DEL</button>
+            <button onclick="appendOperator('/')" class="operator-btn">&divide;</button>
+
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendOperator('*')" class="operator-btn">&times;</button>
+
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendOperator('-')" class="operator-btn">-</button>
+
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendOperator('+')" class="operator-btn">+</button>
+
+            <button onclick="appendNumber('0')" class="span-two">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button onclick="calculateResult()" class="equals-btn">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

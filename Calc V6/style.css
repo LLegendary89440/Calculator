@@ -1,0 +1,251 @@
+:root {
+    /* Primary Theme Colors (Slightly Desaturated for Background) */
+    --theme-blue-light: #7AC7E8; /* Lighter, softer blue */
+    --theme-blue-dark: #3E8CB8;  /* Deeper, desaturated blue */
+    --theme-green-light: #88D8A2;/* Lighter, softer green */
+    --theme-green-dark: #4CAF75; /* Deeper, desaturated green */
+
+    /* Button Colors (Vibrant) */
+    --apple-blue-start: #0A84FF;
+    --apple-blue-end: #0060F0;
+    --apple-green-start: #30D158;
+    --apple-green-end: #28A745;
+
+    --light-gray-bg: #f5f5f7;
+    --medium-gray-bg: #e9e9eb;
+    --dark-gray-text: #1d1d1f;
+    --medium-gray-text: #86868b;
+    --border-color: #dcdce1;
+
+    --panel-bg: rgba(255, 255, 255, 0.85); /* Slightly transparent white for the app wrapper */
+    --panel-bg-opaque: #ffffff; /* For history panel if needed */
+    --shadow-color-soft: rgba(0, 0, 0, 0.06);
+    --shadow-color-medium: rgba(0, 0, 0, 0.1);
+
+    /* Highlight colors - MORE INTENSE */
+    --interactive-highlight-light: rgba(255, 255, 255, 0.75); /* Brighter white for dark buttons */
+    --interactive-highlight-dark: rgba(0, 0, 0, 0.1);     /* More visible dark for light buttons */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* APPLE-ESQUE BACKGROUND */
+    background: linear-gradient(135deg, var(--theme-blue-light) 0%, var(--theme-green-light) 100%);
+    /* Or a more subtle single color gradient:
+    background: linear-gradient(to bottom, #E0F2F7, #D0E0E3);
+    Or a very subtle noise texture (see notes below for how to add this) */
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--dark-gray-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden; /* Prevent scrollbars if content slightly overflows during animation */
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    align-items: flex-start;
+    background-color: var(--panel-bg); /* Use semi-transparent white */
+    padding: 35px;
+    border-radius: 28px;
+    box-shadow: 0 18px 40px var(--shadow-color-medium), 0 8px 18px var(--shadow-color-soft);
+    /* Frosted glass effect (optional, might impact performance) */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for frosted glass */
+}
+
+.calculator {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.display-area {
+    margin-bottom: 30px;
+    background-color: rgba(220, 220, 225, 0.7); /* Slightly transparent medium gray */
+    border-radius: 16px;
+    padding: 6px;
+}
+
+#display {
+    width: 100%;
+    height: 85px;
+    background-color: transparent;
+    border: none;
+    color: var(--dark-gray-text);
+    font-size: 3.5em;
+    font-weight: 300;
+    text-align: right;
+    padding: 10px 18px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+button {
+    height: 70px;
+    border: none;
+    border-radius: 22px;
+    font-size: 1.5em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Remove base box-shadow from here if added by specific button type */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.07); /* Softer default shadow for all buttons */
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Flatter active shadow */
+}
+
+.btn-num {
+    background-color: var(--medium-gray-bg);
+    color: var(--dark-gray-text);
+    font-size: 1.8em;
+    font-weight: 400;
+}
+
+.btn-operator {
+    color: white;
+    font-size: 1.8em;
+    font-weight: 500;
+    background-image: linear-gradient(170deg, var(--apple-blue-start), var(--apple-blue-end));
+    box-shadow: 0 4px 10px rgba(0, 100, 230, 0.25); /* Adjusted shadow color */
+}
+.btn-operator:hover:not(.no-js-hover) { /* Keep CSS hover for fallback or if JS is disabled */
+    background-image: linear-gradient(170deg, lighten(var(--apple-blue-start),5%), lighten(var(--apple-blue-end),5%));
+    box-shadow: 0 5px 12px rgba(0, 100, 230, 0.35);
+}
+
+
+.btn-equals {
+    background-image: linear-gradient(170deg, var(--apple-green-start), var(--apple-green-end));
+    color: white;
+    font-size: 2em;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(40, 170, 70, 0.3); /* Adjusted shadow color */
+}
+.btn-equals:hover:not(.no-js-hover) {
+    background-image: linear-gradient(170deg, lighten(var(--apple-green-start),5%), lighten(var(--apple-green-end),5%));
+    box-shadow: 0 5px 12px rgba(40, 170, 70, 0.4);
+}
+
+.btn-util {
+    background-color: #e0e0e5;
+    color: var(--dark-gray-text);
+    font-size: 1.3em;
+    font-weight: 500;
+}
+.btn-util.top-row {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+/* History Panel Styling */
+.history-panel {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    /* Removed border-left if using backdrop-filter to avoid visual clutter */
+}
+
+.history-panel h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    color: var(--dark-gray-text);
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.history-log {
+    flex-grow: 1;
+    max-height: 380px;
+    overflow-y: auto;
+    font-size: 0.98em;
+    color: var(--medium-gray-text);
+    margin-bottom: 20px;
+}
+.history-log::-webkit-scrollbar { width: 7px; }
+.history-log::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
+.history-log::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+.history-log::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.3); }
+
+.history-item {
+    padding: 9px 3px;
+    border-bottom: 1px solid rgba(220,220,225, 0.5); /* Lighter border */
+    word-wrap: break-word;
+    line-height: 1.45;
+}
+.history-item:last-child { border-bottom: none; }
+
+.btn-clear-history {
+    background-color: var(--medium-gray-bg);
+    color: var(--apple-blue-start);
+    font-weight: 600;
+    padding: 14px 18px;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 0.95em;
+    margin-top: auto;
+}
+
+
+@media (max-width: 820px) {
+    .app-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+        backdrop-filter: none; /* May disable backdrop on mobile for performance */
+        -webkit-backdrop-filter: none;
+        background-color: var(--panel-bg-opaque); /* Use opaque for mobile */
+    }
+    .history-panel {
+        width: 100%;
+        max-width: 350px;
+        padding-left: 0;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid var(--border-color); /* Add border back for stacked view */
+    }
+    .calculator {
+        width: 100%;
+        max-width: 350px;
+    }
+}
