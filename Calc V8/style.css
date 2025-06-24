@@ -1,0 +1,277 @@
+:root {
+    /* Vibrant Background Gradient Colors */
+    --vibrant-bg-blue-start: #6DD5FA;   /* Sky Blue */
+    --vibrant-bg-blue-end: #2980B9;     /* Belize Hole Blue */
+    --vibrant-bg-green-start: #A8E063;  /* Light Green */
+    --vibrant-bg-green-end: #56AB2F;    /* Forest Green */
+
+
+    /* Apple System Colors - Light Mode Reference for UI elements */
+    --system-blue: #007AFF;
+    --system-green: #34C759;
+    --system-orange: #FF9500;
+    /* --system-gray-light-1: #F2F2F7; /* No longer primary page bg */
+    --system-gray-light-2: #E9E9EB; /* Button backgrounds (numbers), display area */
+    --system-gray-light-3: #D1D1D6;
+    --system-gray-light-4: #C7C7CC;
+    --system-gray-light-5: #AEAEB2;
+
+    --system-text-primary: #000000;
+    --system-text-secondary: rgba(60, 60, 67, 0.6);
+
+    /* App Wrapper - Frosted Glass Effect (adjust opacity for vibrancy) */
+    --app-wrapper-bg: rgba(255, 255, 255, 0.65); /* More transparent to show vibrant bg */
+    --app-wrapper-border: rgba(255, 255, 255, 0.2); /* Lighter border for vibrant bg */
+
+    /* Consistent WHITE Interactive Highlight for JS */
+    --interactive-highlight-color: rgba(255, 255, 255, 0.45); /* Adjusted opacity for visibility on all */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* VIBRANT BACKGROUND */
+    background: linear-gradient(135deg, var(--vibrant-bg-blue-start) 0%, var(--vibrant-bg-green-start) 100%);
+    /* You can also try a blue-to-blue or green-to-green gradient if preferred:
+    /* background: linear-gradient(135deg, var(--vibrant-bg-blue-start) 0%, var(--vibrant-bg-blue-end) 100%); */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--system-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 30px; /* Reduced gap slightly */
+    align-items: flex-start;
+    background-color: var(--app-wrapper-bg);
+    padding: 30px; /* Reduced padding slightly */
+    border-radius: 24px; /* Standard Apple corner radius */
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0,0,0,0.08); /* Softer, more diffuse shadows */
+    backdrop-filter: blur(20px); /* Enhance blur for vibrant bg */
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--app-wrapper-border);
+}
+
+.calculator {
+    width: 330px; /* Slightly narrower to fit typical calculator proportions */
+    display: flex;
+    flex-direction: column;
+}
+
+.display-area {
+    margin-bottom: 25px;
+    background-color: var(--system-gray-light-2); /* Standard light gray bg for display */
+    border-radius: 12px; /* Apple-like rounding */
+    padding: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06); /* Subtle inner shadow */
+}
+
+#display {
+    width: 100%;
+    height: 80px; /* Standard height */
+    background-color: transparent;
+    border: none;
+    color: var(--system-text-primary);
+    /* BIGGER NUMBERS IN DISPLAY FIELD */
+    font-size: 3.2em; /* Increased font size, revert from expression-focused size */
+    font-weight: 300; /* Lighter weight for larger numbers, common in Apple UI */
+    text-align: right;
+    padding: 10px 15px; /* Adjust padding for larger font */
+    box-sizing: border-box;
+    overflow-x: auto; /* Scroll for long numbers/expressions */
+    white-space: nowrap;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px; /* Standard Apple gap for button grids */
+}
+
+button {
+    height: 68px; /* Slightly adjusted height */
+    border: none;
+    border-radius: 18px; /* More rounded, common in newer Apple UIs */
+    font-size: 1.5em; /* Base font size for button text */
+    font-weight: 500; /* Medium weight for clarity */
+    cursor: pointer;
+    transition: transform 0.08s ease-out, box-shadow 0.15s ease-out; /* Faster, snappier transitions */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* For the JS highlight effect */
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Base shadow for slight lift */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+button:active {
+    transform: scale(0.96); /* Slightly more subtle press */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07); /* Flatter shadow when pressed */
+}
+
+.btn-number {
+    background-color: var(--system-gray-light-2);
+    color: var(--system-text-primary);
+    font-size: 1.8em; /* Numbers slightly larger */
+    font-weight: 400;
+}
+
+.btn-function { /* For AC, DEL, +/-, %, √ */
+    background-color: var(--system-gray-light-4); /* Darker gray for function buttons */
+    color: var(--system-text-primary);
+    font-size: 1.3em; /* Text slightly smaller for function labels */
+}
+.btn-function.top-row { /* AC, DEL */
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+.btn-operator.op-style { /* For +, -, ×, ÷, = */
+    color: white;
+    font-size: 1.9em; /* Operators slightly larger and bolder */
+    font-weight: 500;
+}
+.btn-operator.op-style:not(.btn-equals) { /* +, -, ×, ÷ */
+    background-color: var(--system-blue);
+}
+.btn-equals.op-style { /* = button */
+    background-color: var(--system-green);
+    font-size: 2em; /* Equals can be slightly more prominent */
+    font-weight: 600;
+}
+
+/* Fallback hover (JS interactive highlight is preferred) */
+.btn-number:hover, .btn-function:hover {
+    background-color: var(--system-gray-light-3);
+}
+.btn-operator.op-style:not(.btn-equals):hover {
+    background-color: color-mix(in srgb, var(--system-blue) 90%, black);
+}
+.btn-equals.op-style:hover {
+    background-color: color-mix(in srgb, var(--system-green) 90%, black);
+}
+
+
+.span-two {
+    grid-column: span 2;
+}
+
+.history-panel {
+    width: 280px; /* Slightly narrower history */
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px; /* Space from calculator */
+}
+
+.history-panel h3 {
+    font-size: 1.1em; /* Smaller history title */
+    font-weight: 600;
+    color: var(--system-text-primary);
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--system-gray-light-3);
+    text-align: left;
+}
+
+.history-log {
+    flex-grow: 1;
+    max-height: 350px; /* Adjust as needed */
+    overflow-y: auto;
+    font-size: 0.9em;
+    color: var(--system-text-secondary); /* Secondary text color */
+    margin-bottom: 15px;
+}
+.history-log::-webkit-scrollbar { width: 6px; }
+.history-log::-webkit-scrollbar-track { background: transparent; } /* Invisible track */
+.history-log::-webkit-scrollbar-thumb { background: var(--system-gray-light-4); border-radius: 3px; }
+.history-log::-webkit-scrollbar-thumb:hover { background: var(--system-gray-light-5); }
+
+.history-item {
+    padding: 7px 2px;
+    border-bottom: 1px solid var(--system-gray-light-2); /* Lighter separator */
+    word-wrap: break-word;
+    line-height: 1.4;
+    transition: background-color 0.15s ease;
+}
+.history-item:hover {
+    background-color: rgba(0,0,0,0.03); /* Subtle hover for history items */
+}
+.history-item:last-child { border-bottom: none; }
+
+.btn-clear-history {
+    background-color: var(--system-gray-light-2);
+    color: var(--system-blue); /* Action color */
+    font-weight: 500;
+    padding: 12px 15px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 0.9em;
+    margin-top: auto; /* Pushes to bottom */
+}
+.btn-clear-history:hover {
+    background-color: var(--system-gray-light-3);
+}
+
+@media (max-width: 768px) { /* Adjusted breakpoint for typical tablet portrait */
+    .app-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        backdrop-filter: none; /* Often disabled on mobile for performance */
+        -webkit-backdrop-filter: none;
+        background-color: var(--system-gray-light-1); /* Opaque background for mobile */
+        border: none;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .history-panel {
+        width: 100%;
+        max-width: 330px; /* Match calculator width */
+        padding-left: 0;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid var(--system-gray-light-3);
+    }
+    .calculator {
+        width: 100%;
+        max-width: 330px;
+    }
+    #display {
+        font-size: 2.8em; /* Slightly smaller font on mobile if needed */
+        height: 75px;
+    }
+    button {
+        height: 65px;
+        font-size: 1.4em; /* Adjust button text size */
+    }
+    .btn-number { font-size: 1.7em; }
+    .btn-operator.op-style { font-size: 1.8em; }
+    .btn-equals.op-style { font-size: 1.9em; }
+
+}
