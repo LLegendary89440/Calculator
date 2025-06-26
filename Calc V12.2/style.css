@@ -1,0 +1,199 @@
+/* --- THEME VARIABLE DEFINITIONS --- */
+:root {
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --transition-snap: transform 0.08s ease-out, box-shadow 0.1s ease-out;
+    --transition-smooth: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* --- VIBRANT THEME (DEFAULT) --- */
+body.theme-vibrant {
+    --page-bg-gradient: linear-gradient(135deg, #6DD5FA 0%, #A8E063 100%);
+    --page-bg-solid: #F0F2F5;
+    --text-primary: #000000;
+    --text-secondary: rgba(60, 60, 67, 0.6);
+    --text-on-color: #FFFFFF;
+    --app-wrapper-bg: rgba(255, 255, 255, 0.65);
+    --app-wrapper-border: rgba(255, 255, 255, 0.2);
+    --display-bg: #E5E5EA;
+    --shadow-wrapper: 0 16px 32px rgba(0, 0, 0, 0.12);
+    --shadow-lift: 0 2px 3px rgba(0,0,0,0.06);
+    --btn-number-bg: #E5E5EA;
+    --btn-function-bg: #D1D1D6;
+    --btn-function-alt-bg: #FF9500;
+    --btn-operator-bg: #007AFF;
+    --btn-equals-bg: #34C759;
+    --history-border: #D1D1D6;
+    --history-item-hover: rgba(0,0,0,0.03);
+    --clear-history-text: var(--btn-operator-bg);
+    --highlight-color: rgba(255, 255, 255, 0.6); /* White highlight */
+}
+
+/* --- LIGHT THEME --- */
+body.theme-light {
+    --page-bg-gradient: none;
+    --page-bg-solid: #F2F2F7;
+    --text-primary: #000000;
+    --text-secondary: rgba(60, 60, 67, 0.6);
+    --text-on-color: #FFFFFF;
+    --app-wrapper-bg: rgba(242, 242, 247, 0.8);
+    --app-wrapper-border: rgba(0, 0, 0, 0.1);
+    --display-bg: #E5E5EA;
+    --shadow-wrapper: 0 16px 32px rgba(0, 0, 0, 0.1);
+    --shadow-lift: 0 2px 3px rgba(0,0,0,0.06);
+    --btn-number-bg: #E5E5EA;
+    --btn-function-bg: #D1D1D6;
+    --btn-function-alt-bg: #FF9500;
+    --btn-operator-bg: #007AFF;
+    --btn-equals-bg: #34C759;
+    --history-border: #D1D1D6;
+    --history-item-hover: rgba(0,0,0,0.03);
+    --clear-history-text: var(--btn-operator-bg);
+    --highlight-color: rgba(255, 255, 255, 0.6); /* White highlight */
+}
+
+/* --- DARK THEME --- */
+body.theme-dark {
+    --page-bg-gradient: none;
+    --page-bg-solid: #1C1C1E;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(235, 235, 245, 0.6);
+    --text-on-color: #FFFFFF;
+    --app-wrapper-bg: rgba(28, 28, 30, 0.75);
+    --app-wrapper-border: rgba(255, 255, 255, 0.1);
+    --display-bg: #2C2C2E;
+    --shadow-wrapper: 0 16px 40px rgba(0,0,0,0.25);
+    --shadow-lift: 0 2px 5px rgba(0,0,0,0.2);
+    --btn-number-bg: #2C2C2E;
+    --btn-function-bg: #3A3A3C;
+    --btn-function-alt-bg: #FF9F0A;
+    --btn-operator-bg: #0A84FF;
+    --btn-equals-bg: #30D158;
+    --history-border: #3A3A3C;
+    --history-item-hover: rgba(255,255,255,0.05);
+    --clear-history-text: var(--btn-operator-bg);
+    --highlight-color: rgba(120, 120, 120, 0.5); /* Darker Grey highlight */
+}
+
+/* --- GENERAL ELEMENT STYLES --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+
+body {
+    display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh;
+    font-family: var(--font-primary); overflow: hidden; padding-top: 60px;
+    background-color: var(--page-bg-solid); background-image: var(--page-bg-gradient);
+    color: var(--text-primary); transition: var(--transition-smooth);
+}
+
+.theme-switcher {
+    position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px; padding: 8px; border-radius: 12px; z-index: 1000;
+    background-color: var(--display-bg); box-shadow: var(--shadow-lift);
+    transition: var(--transition-smooth);
+}
+.theme-btn {
+    padding: 8px 15px; border: none; border-radius: 8px; font: 500 0.9em var(--font-primary);
+    cursor: pointer; background-color: transparent; color: var(--text-secondary);
+    transition: var(--transition-smooth);
+}
+.theme-btn.active { background-color: var(--btn-operator-bg); color: var(--text-on-color); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.theme-btn:not(.active):hover { background-color: color-mix(in srgb, var(--btn-number-bg) 90%, black); color: var(--text-primary); }
+
+.main-container { display: flex; justify-content: center; align-items: center; width: 100%; padding: 20px; }
+.app-wrapper {
+    display: flex; flex-direction: row; gap: 30px; align-items: flex-start;
+    padding: 30px; border-radius: 24px;
+    background-color: var(--app-wrapper-bg); border: 1px solid var(--app-wrapper-border);
+    box-shadow: var(--shadow-wrapper); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    transition: var(--transition-smooth);
+}
+
+.calculator { width: 320px; display: flex; flex-direction: column; }
+.display-container {
+    background-color: var(--display-bg); border-radius: 12px; padding: 5px; margin-bottom: 20px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); transition: var(--transition-smooth);
+}
+#main-display {
+    width: 100%; height: 80px; background-color: transparent; border: none; color: var(--text-primary);
+    font-size: 3.2em; font-weight: 300; text-align: right; padding: 5px 15px; overflow-x: auto; white-space: nowrap;
+    transition: var(--transition-smooth), font-size 0.1s linear;
+}
+
+.buttons-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.btn {
+    height: 65px; border: none; border-radius: 18px; font-weight: 500; cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+    position: relative; overflow: hidden; /* CRITICAL FOR PSEUDO-ELEMENT */
+    box-shadow: var(--shadow-lift);
+    transition: var(--transition-snap), background-color 0.15s ease-out;
+}
+.btn:active { transform: scale(0.96); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+
+/* --- HIGHLIGHT ANIMATION USING PSEUDO-ELEMENT (MODIFIED) --- */
+.btn.interactive-highlight::before {
+    content: '';
+    position: absolute;
+    /* Position is set by JavaScript using these variables */
+    top: var(--mouse-y, -999px);
+    left: var(--mouse-x, -999px);
+    
+    /* BIGGER RADIUS: Make the pseudo-element larger than the button */
+    width: 250px;
+    height: 250px;
+    
+    transform: translate(-50%, -50%); /* Center the pseudo-element on the cursor */
+    
+    /* CLEAR CENTER: Create a gradient with a bright center that fades out */
+    background-image: radial-gradient(
+        circle,
+        var(--highlight-color) 0%,      /* The color starts at 0% (the center) */
+        var(--highlight-color) 10%,     /* Stays solid for a small radius */
+        transparent 40%                 /* Fades out to transparent by 40% of the 250px size */
+    );
+
+    border-radius: 50%;
+    opacity: var(--highlight-opacity, 0); /* Visibility is controlled by JS */
+    transition: opacity 0.4s ease-out; /* Fade out transition */
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+}
+/* --- END OF HIGHLIGHT ANIMATION --- */
+
+
+.btn-number { background-color: var(--btn-number-bg); color: var(--text-primary); font-size: 1.7em; font-weight: 400; }
+.btn-number:hover { background-color: color-mix(in srgb, var(--btn-number-bg) 90%, black); }
+
+.btn-function { background-color: var(--btn-function-bg); color: var(--text-primary); font-size: 1.35em; }
+.btn-function:hover { background-color: color-mix(in srgb, var(--btn-function-bg) 90%, black); }
+
+.btn-function-alt { background-color: var(--btn-function-alt-bg); color: var(--text-on-color); font-size: 1.4em; }
+.btn-function-alt:hover { background-color: color-mix(in srgb, var(--btn-function-alt-bg) 90%, black); }
+
+.btn-operator { background-color: var(--btn-operator-bg); color: var(--text-on-color); font-size: 1.8em; }
+.btn-operator:hover { background-color: color-mix(in srgb, var(--btn-operator-bg) 90%, black); }
+
+.btn-equals { background-color: var(--btn-equals-bg); font-size: 2em; font-weight: 600; }
+.btn-equals:hover { background-color: color-mix(in srgb, var(--btn-equals-bg) 90%, black); }
+
+.span-two { grid-column: span 2; }
+.history-panel { width: 270px; display: flex; flex-direction: column; padding-left: 25px; transition: var(--transition-smooth); }
+.history-panel h3 { font-size: 1.1em; font-weight: 600; color: var(--text-primary); margin: 0 0 15px 0; padding-bottom: 10px; border-bottom: 1px solid var(--history-border); transition: var(--transition-smooth); }
+.history-log-area { flex-grow: 1; max-height: 330px; overflow-y: auto; font-size: 0.9em; color: var(--text-secondary); margin-bottom: 15px; transition: var(--transition-smooth); }
+.history-log-area::-webkit-scrollbar { width: 5px; }
+.history-log-area::-webkit-scrollbar-track { background: transparent; }
+.history-log-area::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--history-border) 90%, black); border-radius: 3px; }
+.history-item { padding: 6px 2px; border-bottom: 1px solid var(--history-border); word-wrap: break-word; line-height: 1.35; transition: background-color 0.15s ease; }
+.history-item:last-child { border-bottom: none; }
+.history-item:hover { background-color: var(--history-item-hover); }
+.btn-clear-history { background-color: var(--btn-number-bg); color: var(--clear-history-text); font-weight: 500; padding: 10px 15px; border-radius: 10px; font-size: 0.85em; margin-top: auto; transition: var(--transition-smooth); }
+.btn-clear-history:hover { background-color: color-mix(in srgb, var(--btn-number-bg) 90%, black); }
+
+@media (max-width: 768px) {
+    body { padding-top: 70px; }
+    .theme-switcher { flex-wrap: wrap; justify-content: center; width: auto; max-width: 90%;}
+    .main-wrapper { flex-direction: column; }
+    .history-panel { width: 100%; max-width: 320px; padding-left: 0; margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--history-border); }
+    .calculator { width: 100%; max-width: 320px; }
+    #main-display { font-size: 2.8em; height: 75px; }
+    .btn { height: 60px; font-size: 1.4em; border-radius: 16px; }
+}

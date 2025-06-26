@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-vibrant"> <!-- Default Theme -->
+    <div class="theme-switcher">
+        <button data-theme="light" class="theme-btn">Light</button>
+        <button data-theme="dark" class="theme-btn">Dark</button>
+        <button data-theme="vibrant" class="theme-btn active">Vibrant</button>
+    </div>
+
+    <main class="main-container">
+        <div class="app-wrapper">
+            <div class="calculator">
+                <div class="display-container">
+                    <input type="text" id="main-display" readonly value="0">
+                </div>
+                <div class="buttons-grid">
+                    <button data-action="clear" class="btn btn-function-alt interactive-highlight span-two">AC</button>
+                    <button data-action="delete" class="btn btn-function-alt interactive-highlight span-two">DEL</button>
+
+                    <button data-value="7" class="btn btn-number interactive-highlight">7</button>
+                    <button data-value="8" class="btn btn-number interactive-highlight">8</button>
+                    <button data-value="9" class="btn btn-number interactive-highlight">9</button>
+                    <button data-value="/" class="btn btn-operator interactive-highlight">&divide;</button>
+
+                    <button data-value="4" class="btn btn-number interactive-highlight">4</button>
+                    <button data-value="5" class="btn btn-number interactive-highlight">5</button>
+                    <button data-value="6" class="btn btn-number interactive-highlight">6</button>
+                    <button data-value="*" class="btn btn-operator interactive-highlight">&times;</button>
+
+                    <button data-value="1" class="btn btn-number interactive-highlight">1</button>
+                    <button data-value="2" class="btn btn-number interactive-highlight">2</button>
+                    <button data-value="3" class="btn btn-number interactive-highlight">3</button>
+                    <button data-value="-" class="btn btn-operator interactive-highlight">-</button>
+
+                    <button data-action="toggle-sign" class="btn btn-function interactive-highlight">+/-</button>
+                    <button data-value="0" class="btn btn-number interactive-highlight">0</button>
+                    <button data-action="percentage" class="btn btn-function interactive-highlight">%</button>
+                    <button data-value="+" class="btn btn-operator interactive-highlight">+</button>
+
+                    <button data-action="sqrt" class="btn btn-function interactive-highlight">√</button>
+                    <button data-value="." class="btn btn-number interactive-highlight">.</button>
+                    <button data-action="equals" class="btn btn-operator btn-equals span-two interactive-highlight">=</button>
+                </div>
+            </div>
+            <div class="history-panel">
+                <h3>History</h3>
+                <div id="history-log" class="history-log-area"></div>
+                <button data-action="clear-history" class="btn btn-clear-history interactive-highlight">Clear History</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
